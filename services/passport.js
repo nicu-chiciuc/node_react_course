@@ -27,25 +27,15 @@ passport.use(
       callbackURL: '/auth/google/callback',
       proxy: true, // otherwise google will reset https to http when proxy is in middle
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({ googleId: profile.id })
-        .then(existingUser => {
-          if (existingUser) {
-            done(null, existingUser)
-          } else {
-            new User({ googleId: profile.id })
-              .save()
-              .then(user => {
-                done(null, user)
-              })
-              .catch(err => {
-                console.log('sub', err)
-              })
-          }
-        })
-        .catch(err => {
-          console.log('main', err)
-        })
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ googleId: profile.id })
+
+      if (existingUser) {
+        return done(null, existingUser)
+      }
+
+      const user = await new User({ googleId: profile.id }).save()
+      done(null, user)
     }
   )
 )
