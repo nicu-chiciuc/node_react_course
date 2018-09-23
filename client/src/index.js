@@ -17,5 +17,3 @@ ReactDOM.render(
   </Provider>,
   document.querySelector('#root')
 )
-
-console.log('stripe key is', process.env)
