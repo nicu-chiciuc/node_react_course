@@ -36,7 +36,7 @@ class SurveyForm extends Component {
 function validate(values) {
   const errors = {}
 
-  errors.emails = validateEmails(values.emails || '')
+  errors.recipients = validateEmails(values.recipients || '')
 
   formFields.forEach(({ name }) => {
     if (!values[name]) errors[name] = 'You must provide a value'
