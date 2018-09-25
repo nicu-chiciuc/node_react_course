@@ -6,8 +6,7 @@ import * as actions from '../actions'
 import Header from './Header'
 import Landing from './Landing'
 import Dashboard from './Dashboard'
-
-const SurveryNew = () => <h2>SurveryNew </h2>
+import SurveryNew from './surveys/SurveyNew'
 
 class App extends Component {
   componentDidMount() {
@@ -18,7 +17,7 @@ class App extends Component {
     return (
       <div className="container">
         <BrowserRouter>
-          <div>
+          <div className="container">
             <Header />
 
             <Route exact path="/" component={Landing} />
